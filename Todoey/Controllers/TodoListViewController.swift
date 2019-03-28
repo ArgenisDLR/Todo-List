@@ -10,16 +10,28 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
     
-    var itemArray = ["Find Mike","Buy Eggos","Destroy Demogorgon"]
+    var itemArray = [Item]()
     
     let defaults = UserDefaults.standard
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let newItem = Item()
+        newItem.title = "Find Mike"
+        itemArray.append(newItem)
 
-        if let items = UserDefaults.standard.array(forKey: "TodoListArray") as? [String] {
-            itemArray = items
-        }
+        let newItem2 = Item()
+        newItem.title = "Buy Eggos"
+        itemArray.append(newItem2)
+        
+        let newItem3 = Item()
+        newItem.title = "Destory Demogorgon"
+        itemArray.append(newItem3)
+        
+//        if let items = UserDefaults.standard.array(forKey: "TodoListArray") as? [String] {
+//            itemArray = items
+//        }
         
     }
     
@@ -32,7 +44,7 @@ class TodoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ToDoItemCell", for: indexPath)
         
-        cell.textLabel?.text = itemArray[indexPath.row]
+        cell.textLabel?.text = itemArray[indexPath.row].title
         
         return cell
     }
@@ -58,10 +70,13 @@ class TodoListViewController: UITableViewController {
         let alert = UIAlertController(title: "Add New Todoey", message: "", preferredStyle: .alert)
         
         let action =  UIAlertAction(title: "Add Item", style: .default) { (action) in
-    
-            self.itemArray.append(textField.text!)
             
-            defaults.set(self.itemArray, forKey: "TodoListArray")
+            let newItem = Item()
+            newItem.title = textField.text!
+    
+            self.itemArray.append(newItem)
+            
+            self.defaults.set(self.itemArray, forKey: "TodoListArray")
             
             self.tableView.reloadData()
         }
