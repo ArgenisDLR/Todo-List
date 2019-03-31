@@ -23,7 +23,6 @@ class TodoListViewController: UITableViewController {
         
         loadItems()
         
-        
 //        let newItem = Item()
 //        newItem.title = "Find Mike"
 //        newItem.done = true
