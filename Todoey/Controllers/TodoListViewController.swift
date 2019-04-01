@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class TodoListViewController: UITableViewController {
+class TodoListViewController: UITableViewController, UISearchBarDelegate {
     
     var itemArray = [Item]()
     
@@ -24,12 +24,12 @@ class TodoListViewController: UITableViewController {
         
         print(dataFilePath!)
         
-//        loadItems()
+        loadItems()
         
         
     }
     
-    // MARK - Tableview Datasource Methods
+    // MARK: - Tableview Datasource Methods
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemArray.count
@@ -56,7 +56,7 @@ class TodoListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    // MARK - Add New Items w/ ALERTS
+    // MARK: - Add New Items w/ ALERTS
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         
@@ -86,7 +86,7 @@ class TodoListViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
-    // MARK - Model Manipulation Methods
+    // MARK: - Model Manipulation Methods
     
     func saveItems() {
         
@@ -109,6 +109,14 @@ class TodoListViewController: UITableViewController {
         } catch {
             print("Error \(error)")
         }
+    }
+}
+
+//MARK: - Search Bar Methods
+
+extension TodoListViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        <#code#>
     }
     
 }
