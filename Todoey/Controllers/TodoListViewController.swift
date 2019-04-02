@@ -61,7 +61,7 @@ class TodoListViewController: UITableViewController {
         let alert = UIAlertController(title: "Add New Todoey", message: "", preferredStyle: .alert)
         
         let action =  UIAlertAction(title: "Add Item", style: .default) { (action) in
-   
+            
             let newItem = Item(context: self.context)
             newItem.title = textField.text!
             newItem.done = false
@@ -98,7 +98,7 @@ class TodoListViewController: UITableViewController {
     }
     
     func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest()) {
-
+        
         do {
             itemArray = try context.fetch(request)
         } catch {
@@ -117,7 +117,7 @@ extension TodoListViewController: UISearchBarDelegate {
         request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
         
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
-
+        
         loadItems(with: request)
         
     }
@@ -126,9 +126,10 @@ extension TodoListViewController: UISearchBarDelegate {
         if searchBar.text?.count == 0 {
             loadItems()
             
-            searchBar.resignFirstResponder()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
         }
     }
-    
 }
 
