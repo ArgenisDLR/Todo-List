@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Category View Controller-->
+        <!--Todoey-->
         <scene sceneID="nuo-6c-M9e">
             <objects>
                 <tableViewController id="yZt-EK-YCi" customClass="CategoryViewController" customModule="Todoey" customModuleProvider="target" sceneMemberID="viewController">
@@ -32,7 +32,7 @@
                             <outlet property="delegate" destination="yZt-EK-YCi" id="URN-if-2iN"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="NCN-Og-01w">
+                    <navigationItem key="navigationItem" title="Todoey" id="NCN-Og-01w">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="DQL-07-RUh">
                             <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
@@ -48,7 +48,7 @@
             </objects>
             <point key="canvasLocation" x="958" y="145"/>
         </scene>
-        <!--Todoey-->
+        <!--Items-->
         <scene sceneID="BAw-Ic-jYW">
             <objects>
                 <tableViewController id="Ffb-Su-EuW" customClass="TodoListViewController" customModule="Todoey" customModuleProvider="target" sceneMemberID="viewController">
@@ -79,7 +79,7 @@
                             <outlet property="delegate" destination="Ffb-Su-EuW" id="kBQ-UY-Dhs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Todoey" id="SXc-Of-Qhd">
+                    <navigationItem key="navigationItem" title="Items" id="SXc-Of-Qhd">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="qvg-zM-CoJ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
