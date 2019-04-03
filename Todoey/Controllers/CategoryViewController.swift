@@ -21,6 +21,61 @@ class CategoryViewController: UITableViewController {
         loadCategories()
     }
     
+    //MARK: - Table View Data Source Methods
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return categories.count
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
+        
+        cell.textLabel?.text = categories[indexPath.row].name
+        
+        return cell
+    }
+    
+    //MARK: - Table View Delegate Methods
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goToItems", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! TodoListViewController
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedCategory = categories[indexPath.row]
+        }
+    }
+    
+    //MARK: - Table Data Manipulation
+    
+    func saveCategories() {
+        
+        do {
+            try context.save()
+        } catch {
+            print("Error saving categories \(error)")
+        }
+        tableView.reloadData()
+    }
+    
+    func loadCategories() {
+        
+        let request: NSFetchRequest<Category> = Category.fetchRequest()
+        
+        do {
+            categories = try context.fetch(request)
+        } catch {
+            print("Error loading categories \(error)")
+        }
+        
+        tableView.reloadData()
+        
+    }
+    
     //MARK: - ADD NEW CATEGORIES
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
@@ -48,49 +103,5 @@ class CategoryViewController: UITableViewController {
         }
         
         present(alert, animated: true, completion: nil)
-    }
-    
-    //MARK: - Table View Data Source Methods
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
-    }
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CategoryCell", for: indexPath)
-        
-        cell.textLabel?.text = categories[indexPath.row].name
-        
-        return cell
-    }
-    
-    
-    //MARK: - Table View Delegate Methods
-    
-    //MARK: - Table Data Manipulation
-    
-    func saveCategories() {
-        
-        do {
-            try context.save()
-        } catch {
-            print("Error saving categories \(error)")
-        }
-        tableView.reloadData()
-    }
-    
-    func loadCategories() {
-        
-        let request: NSFetchRequest<Category> = Category.fetchRequest()
-        
-        do {
-            categories = try context.fetch(request)
-        } catch {
-            print("Error loading categories \(error)")
-        }
-        
-        tableView.reloadData()
-        
     }
 }
