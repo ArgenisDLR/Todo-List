@@ -13,9 +13,7 @@ class CategoryViewController: UITableViewController {
     
     let realm = try! Realm()
     
-    var categories = [Category]()
-    
-    var context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var categories: Results<Category>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +21,7 @@ class CategoryViewController: UITableViewController {
         loadCategories()
     }
     
-    //MARK: - Table View Data Source Methods
+    //MARK: - Table View SETUP
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return categories.count
@@ -67,17 +65,10 @@ class CategoryViewController: UITableViewController {
     }
     
     func loadCategories() {
+
+        categories = realm.objects(Category.self)
         
-//        let request: NSFetchRequest<Category> = Category.fetchRequest()
-//        
-//        do {
-//            categories = try context.fetch(request)
-//        } catch {
-//            print("Error loading categories \(error)")
-//        }
-//        
-//        tableView.reloadData()
-//        
+        tableView.reloadData()
     }
     
     //MARK: - ADD NEW CATEGORIES
