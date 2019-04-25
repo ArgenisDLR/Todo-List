@@ -42,7 +42,7 @@ class CategoryViewController: SwipeTableViewController {
             
             cell.textLabel?.text = category.name
             
-            guard let categoryColour = UIColor(hexString: category.colour) else {fatalError()}
+            guard let categoryColour = UIColor(hexString: category.color) else {fatalError()}
             
             cell.backgroundColor = categoryColour
             cell.textLabel?.textColor = ContrastColorOf(categoryColour, returnFlat: true)
@@ -87,7 +87,7 @@ class CategoryViewController: SwipeTableViewController {
     
     func loadCategories() {
         
-        categories  = realm.objects(Category.self)
+        categories = realm.objects(Category.self)
         
         tableView.reloadData()
         
@@ -121,7 +121,7 @@ class CategoryViewController: SwipeTableViewController {
             
             let newCategory = Category()
             newCategory.name = textField.text!
-            newCategory.colour = UIColor.randomFlat.hexValue()
+            newCategory.color = UIColor.randomFlat.hexValue()
             
             self.save(category: newCategory)
             

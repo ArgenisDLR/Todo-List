@@ -34,7 +34,7 @@ class TodoListViewController: SwipeTableViewController {
         
         title = selectedCategory?.name
         
-        guard let colourHex = selectedCategory?.colour else { fatalError() }
+        guard let colourHex = selectedCategory?.color else { fatalError() }
         
         updateNavBar(withHexCode: colourHex)
     }
@@ -79,7 +79,7 @@ class TodoListViewController: SwipeTableViewController {
             
             cell.textLabel?.text = item.title
             
-            if let colour = UIColor(hexString: selectedCategory!.colour)?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(todoItems!.count)) {
+            if let colour = UIColor(hexString: selectedCategory!.color)?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(todoItems!.count)) {
                 cell.backgroundColor = colour
                 cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
             }
@@ -212,3 +212,5 @@ extension TodoListViewController: UISearchBarDelegate {
         }
     }
 }
+
+
