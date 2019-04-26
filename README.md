@@ -1,6 +1,6 @@
 # Todo-List
 
-I built a todo list app that uses a backend to save the data a user inputs.
+I built a todo list app that uses a backend to save the data from user inputs.
 
 ## DEMO
 
