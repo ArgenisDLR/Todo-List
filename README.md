@@ -12,7 +12,7 @@ After comparing and contrasting, I chose to go with Realm DB over Core Data.
 
 ![](images/Screen%20Shot%202019-04-25%20at%201.49.53%20PM.png)
 
-#### WHAT I LEARNED
+#### Tech Stack
 
 - Core Data 
 - Realm 
